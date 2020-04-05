@@ -6,7 +6,7 @@ services:
     restart: always
     container_name: hackforgood-database
     ports:
-      - "127.0.0.1:87017:27017"
+      - "127.0.0.1:27057:27017"
     volumes:
       - "./database/:/data/db"
     networks:
@@ -31,7 +31,7 @@ services:
       - hackforgood-network
     environment:
       - PROD=true
-      - MONGODB=mongodb://bruno:71bc66fa866a67909a28e3bbbc1e5d69@hackforgood-database:87017/hackforgood-database?authSource=admin
+      - MONGODB=mongodb://bruno:71bc66fa866a67909a28e3bbbc1e5d69@hackforgood-database:27057/hackforgood-database?authSource=admin
 
   hackforgood-fakedtc:
     container_name: hackforgood-fakedtc
