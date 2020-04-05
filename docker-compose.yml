@@ -1,51 +1,52 @@
 version: "3.7"
 
-hackforgood-database:
-  image: mongo
-  restart: always
-  container_name: hackforgood-database
-  ports:
-    - 127.0.0.1:87017:27017
-  volumes:
-    - "./database/:/data/db"
-  networks:
-    - hackforgood-network
-  environment:
-    - MONGO_INITDB_ROOT_USERNAME=bruno
-    - MONGO_INITDB_ROOT_PASSWORD=71bc66fa866a67909a28e3bbbc1e5d69
+services:
+  hackforgood-database:
+    image: mongo
+    restart: always
+    container_name: hackforgood-database
+    ports:
+      - 127.0.0.1:87017:27017
+    volumes:
+      - "./database/:/data/db"
+    networks:
+      - hackforgood-network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=bruno
+      - MONGO_INITDB_ROOT_PASSWORD=71bc66fa866a67909a28e3bbbc1e5d69
 
-hackforgood-api:
-  container_name: hackforgood-api
-  restart: always
-  ports:
-    - 8000:3000
-  depends_on:
-    - hackforgood-database
-  build:
-    context: ./chatbot
-    dockerfile: Dockerfile
-  # links:
-  #     - hackforgood-statsd:hackforgood-statsd
-  networks:
-    - hackforgood-network
-  environment:
-    - PROD=true
-    - MONGODB=mongodb://bruno:71bc66fa866a67909a28e3bbbc1e5d69@hackforgood-database:87017/hackforgood-database?authSource=admin
+  hackforgood-api:
+    container_name: hackforgood-api
+    restart: always
+    ports:
+      - 8000:3000
+    depends_on:
+      - hackforgood-database
+    build:
+      context: ./chatbot
+      dockerfile: Dockerfile
+    # links:
+    #     - hackforgood-statsd:hackforgood-statsd
+    networks:
+      - hackforgood-network
+    environment:
+      - PROD=true
+      - MONGODB=mongodb://bruno:71bc66fa866a67909a28e3bbbc1e5d69@hackforgood-database:87017/hackforgood-database?authSource=admin
 
-hackforgood-fakedtc:
-  container_name: hackforgood-fakedtc
-  restart: always
-  ports:
-    - 127.0.0.1:8001:3000
-  depends_on:
-    - hackforgood-database
-  build:
-    context: ./fake-detector
-    dockerfile: Dockerfile
-  # links:
-  #     - hackforgood-statsd:hackforgood-statsd
-  networks:
-    - hackforgood-network
+  hackforgood-fakedtc:
+    container_name: hackforgood-fakedtc
+    restart: always
+    ports:
+      - 127.0.0.1:8001:3000
+    depends_on:
+      - hackforgood-database
+    build:
+      context: ./fake-detector
+      dockerfile: Dockerfile
+    # links:
+    #     - hackforgood-statsd:hackforgood-statsd
+    networks:
+      - hackforgood-network
 
 networks:
   hackforgood-network:
