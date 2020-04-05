@@ -15,9 +15,13 @@ router.post('/', async function (req, res, next) {
     await sendMessage('Audio recebido, vou converter para texto', req.body.From)
     let filename = "./media/audio_" + new Date().getTime() + ".ogg";
     let audioUrl = await getAudioUrl(req.body.MediaUrl0)
+    console.log('downloadFile')
     await downloadFile(audioUrl, filename)
+    console.log('wait')
     await sleep(2000)
+    console.log('convertAudioToText')
     let contents = await convertAudioToText(filename)
+    console.log('checkFake')
     let isItFake = await checkFake(contents)
     if (isItFake) {
       await sendMessage('#FakeNews\n\nO Conteudo enviado por ser uma noticia falsa :( Procure em mais fontes', req.body.From)
