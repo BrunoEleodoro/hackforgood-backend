@@ -6,7 +6,6 @@ function downloadFile(url, filename) {
 		var fileStream = fs.createWriteStream(filename);
 		https.get(url, function (response_file) {
 			response_file.pipe(fileStream);
-			fileStream.close()
 			resolve(true)
 		})
 	})

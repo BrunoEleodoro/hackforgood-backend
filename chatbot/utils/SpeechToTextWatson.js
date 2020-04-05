@@ -12,7 +12,7 @@ const speechToText = new SpeechToTextV1({
 var params = {
 	objectMode: true,
 	contentType: 'audio/ogg',
-	model: 'pt-BR_BroadbandModel',
+	model: 'pt-BR_NarrowbandModel',
 	// keywords: ['colorado', 'tornado', 'tornadoes'],
 	// keywordsThreshold: 0.5,
 	// maxAlternatives: 3
@@ -45,11 +45,18 @@ function convertAudioToText(filename) {
 
 		// Listen for events.
 		recognizeStream.on('data', function (event) {
-			console.log('data', event)
+			console.log('data', JSON.stringify(event.results))
+			var i = 0;
+			var res = ""
+			while (i < event.results.length) {
+				res += event.results[i].alternatives[0].transcript
+				i++;
+			}
 			resolve({
 				error: false,
-				text: event.results[0].alternatives[0].transcript || ""
+				text: res
 			})
+
 		});
 		recognizeStream.on('error', function (event) {
 			console.log('error', event)
