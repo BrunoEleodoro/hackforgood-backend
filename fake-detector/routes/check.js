@@ -5,15 +5,21 @@ const fs = require('fs')
 var classifier;
 
 
+function loadModel() {
+  return new Promise((resolve, reject) => {
+    if (fs.existsSync('./classificador.json') && classifier == null) {
+      natural.BayesClassifier.load('classificador.json', null, function (err, loaded_classifier) {
+        resolve(loaded_classifier)
+      });
+    } else {
+      resolve(classifier)
+    }
+  })
+}
 
-router.post('/', function (req, res, next) {
-  if (fs.existsSync('./classificador.json') && classifier == null) {
-    natural.BayesClassifier.load('classificador.json', null, function (err, loaded_classifier) {
-      classifier = loaded_classifier
-    });
-  }
+router.post('/', async function (req, res, next) {
 
-
+  var classifier = await loadModel()
   var response = classifier.classify(req.body.text)
   res.send({
     status: 200,
