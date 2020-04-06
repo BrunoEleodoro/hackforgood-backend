@@ -6,8 +6,8 @@ router.get('/', function (req, res, next) {
   res.send('Traning model...');
   var natural = require('natural');
 
-  var fakePath = './Fake.br-Corpus/size_normalized_texts/fake/'
-  var truePath = './Fake.br-Corpus/size_normalized_texts/true/'
+  var fakePath = './Fake.br-Corpus/full_texts/fake/'
+  var truePath = './Fake.br-Corpus/full_texts/true/'
 
   var fakeList = fs.readdirSync(fakePath)
   var trueList = fs.readdirSync(truePath)
