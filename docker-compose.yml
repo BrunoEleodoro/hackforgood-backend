@@ -37,7 +37,7 @@ services:
     container_name: hackforgood-fake
     restart: always
     ports:
-      - 3005:3000
+      - 3005:3005
     depends_on:
       - hackforgood-database
     build:
