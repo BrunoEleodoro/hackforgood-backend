@@ -18,6 +18,6 @@ app.get('/', (req, res) => {
 app.use('/train', trainRouter);
 app.use('/check', checkRouter);
 
-app.listen(3000, () => {
+app.listen(3005, () => {
 	console.log('listening')
 })
