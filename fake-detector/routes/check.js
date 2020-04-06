@@ -18,7 +18,7 @@ function loadModel() {
 }
 
 router.post('/', async function (req, res, next) {
-
+  console.log('received', req.body.text)
   var classifier = await loadModel()
   var response = classifier.classify(req.body.text)
   res.send({
