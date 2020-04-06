@@ -22,7 +22,7 @@ router.post('/', async function (req, res, next) {
     console.log('convertAudioToText')
     let contents = await convertAudioToText(filename)
     console.log('checkFake')
-    let isItFake = await checkFake(contents)
+    let isItFake = await checkFake(contents.text)
     if (isItFake) {
       await sendMessage('#FakeNews\n\nO Conteudo enviado por ser uma noticia falsa :( Procure em mais fontes', req.body.From)
     } else {
