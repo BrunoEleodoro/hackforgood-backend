@@ -2,7 +2,7 @@ const request = require('request');
 
 function checkFake(texto) {
 	return new Promise((resolve, reject) => {
-		request.post('http://hackforgood-fakedtc:8001/check', {
+		request.post('http://hackforgood-fakedtc:3005/check', {
 			json: {
 				text: texto
 			}

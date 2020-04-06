@@ -37,7 +37,7 @@ services:
     container_name: hackforgood-fakedtc
     restart: always
     ports:
-      - 127.0.0.1:8001:3000
+      - 3005:3000
     depends_on:
       - hackforgood-database
     build:
