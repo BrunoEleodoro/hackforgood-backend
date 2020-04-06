@@ -19,6 +19,10 @@ Repositorio com noticias falsas e verdadeiras para treinar o modelo.
 
 https://github.com/roneysco/Fake.br-Corpus
 
+## Arquitetura
+
+<img src="docs/images/arch.png" width="100%"/>
+
 ## Passo a passo
 
 Ao implementar no ambiente de produção, temos 2 pastas na raiz de nosso projeto.
