@@ -12,8 +12,9 @@ function checkFake(texto) {
 				return
 			}
 			console.log(`statusCode: ${res.statusCode}`)
-			var parsed = JSON.parse(body)
-			resolve(parsed.fake)
+			// console.log(`body: ${body}`)
+
+			resolve(body.fake)
 		})
 	})
 }
