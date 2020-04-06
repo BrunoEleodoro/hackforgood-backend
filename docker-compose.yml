@@ -33,8 +33,8 @@ services:
       - PROD=true
       - MONGODB=mongodb://bruno:71bc66fa866a67909a28e3bbbc1e5d69@hackforgood-database:27057/hackforgood-database?authSource=admin
 
-  hackforgood-fakedtc:
-    container_name: hackforgood-fakedtc
+  hackforgood-fake:
+    container_name: hackforgood-fake
     restart: always
     ports:
       - 3005:3000
