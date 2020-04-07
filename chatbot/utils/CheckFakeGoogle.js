@@ -7,7 +7,7 @@ function checkFake(texto) {
 			auth: process.env.googleSearchApiKey,
 			cx: process.env.googleSearchId,
 			q: texto.substring(0, 150),
-			dateRestrict: "d2",
+			// dateRestrict: "d10",
 			num: 2,
 		})
 
