@@ -6,7 +6,7 @@ function checkFake(texto) {
 		const response = await customSearch.cse.list({
 			auth: process.env.googleSearchApiKey,
 			cx: process.env.googleSearchId,
-			q: texto.substring(0, 50),
+			q: texto.substring(0, 100),
 			dateRestrict: "d2",
 			num: 2,
 		})
