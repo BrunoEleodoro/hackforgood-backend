@@ -6,7 +6,7 @@ function checkFake(texto) {
 		const response = await customSearch.cse.list({
 			auth: process.env.googleSearchApiKey,
 			cx: process.env.googleSearchId,
-			q: 'Não deve haver paralisação de caminhoneiros na próxima',
+			q: texto,
 			dateRestrict: "d2",
 			num: 2,
 		})
