@@ -11,6 +11,7 @@ const sleep = require('../utils/Sleep').sleep
 
 router.post('/', async function (req, res, next) {
   res.send('reply')
+  console.log('router post', req.body)
 
   var messageHeaderFake = '⚠️ #FakeNews ⚠️\n\nO Conteudo enviado por ser uma noticia falsa :( Procure em mais fontes';
   var messageHeaderTrue = '⚠️ ⚠️ O Conteudo parece ser verdadeiro, mesmo assim recomendamos que você verifique os fatos em mais fontes'
