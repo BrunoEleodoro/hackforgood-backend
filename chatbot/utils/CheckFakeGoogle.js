@@ -2,7 +2,7 @@ const google = require('googleapis').google
 const customSearch = google.customsearch('v1')
 
 function checkFake(texto) {
-	return new Promise((resolve, reject) => {
+	return new Promise(async (resolve, reject) => {
 		const response = await customSearch.cse.list({
 			auth: process.env.googleSearchApiKey,
 			cx: process.env.googleSearchId,
