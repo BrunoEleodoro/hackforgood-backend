@@ -12,7 +12,9 @@ const sleep = require('../utils/Sleep').sleep
 router.post('/', async function (req, res, next) {
   res.send('reply')
   console.log('router post', req.body.Body)
-  req.body.Body = req.body.Body.join('\n')
+  var msg = req.body.Body
+
+  // req.body.Body = req.body.Body.join('\n')
 
   var messageHeaderFake = '⚠️ #FakeNews ⚠️\n\nO Conteudo enviado por ser uma noticia falsa :( Procure em mais fontes';
   var messageHeaderTrue = '⚠️ ⚠️ O Conteudo parece ser verdadeiro, mesmo assim recomendamos que você verifique os fatos em mais fontes'
@@ -38,7 +40,8 @@ router.post('/', async function (req, res, next) {
     }
     sendNews(contents.text, req.body.From)
   } else if (req.body.NumMedia == '0' && req.body.Body.length >= 150) {
-    let isItFake = await checkFake(req.body.Body)
+    msg = msg.toString().join('\n')
+    let isItFake = await checkFake(msg)
     if (isItFake) {
       var message = messageHeaderFake
       await sendMessage(message, req.body.From)
@@ -46,7 +49,7 @@ router.post('/', async function (req, res, next) {
       var message = messageHeaderTrue
       await sendMessage(message, req.body.From)
     }
-    sendNews(req.body.Body, req.body.From)
+    sendNews(msg, req.body.From)
   } else {
     await sendMessage('Por favor envie um audio ou texto com mais de 150 caracteres.', req.body.From)
   }
