@@ -3,6 +3,7 @@ const customSearch = google.customsearch('v1')
 
 function checkFake(texto) {
 	return new Promise(async (resolve, reject) => {
+		console.log('checkFake', texto.substring(0, 150))
 		const response = await customSearch.cse.list({
 			auth: process.env.googleSearchApiKey,
 			cx: process.env.googleSearchId,
