@@ -12,7 +12,8 @@ const sleep = require('../utils/Sleep').sleep
 router.post('/', async function (req, res, next) {
   res.send('reply')
   console.log('router post', req.body.Body)
-  var msg = req.body.Body
+  // var msg = req.body.Body
+  var msg = ""
 
   // req.body.Body = req.body.Body.join('\n')
 
@@ -40,6 +41,7 @@ router.post('/', async function (req, res, next) {
     }
     sendNews(contents.text, req.body.From)
   } else if (req.body.NumMedia == '0' && req.body.Body.length >= 150) {
+    console.log('req.body.Body', typeof req.body.Body)
     msg = msg.toString().join('\n')
     let isItFake = await checkFake(msg)
     if (isItFake) {
