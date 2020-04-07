@@ -41,7 +41,8 @@ router.post('/', async function (req, res, next) {
     }
     sendNews(contents.text, req.body.From)
   } else if (req.body.NumMedia == '0' && req.body.Body.length >= 150) {
-    console.log('req.body.Body', typeof req.body.Body)
+    // console.log('req.body.Body', typeof req.body.Body)
+    msg = req.body.Body
     msg = msg.toString().split('\n').join('')
     let isItFake = await checkFake(msg)
     if (isItFake) {
