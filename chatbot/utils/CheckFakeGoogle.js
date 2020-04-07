@@ -13,7 +13,7 @@ function checkFake(texto) {
 			auth: process.env.googleSearchApiKey,
 			cx: process.env.googleSearchId,
 			q: texto,
-			// dateRestrict: "d10",
+			dateRestrict: "d10",
 			num: 2,
 		})
 
