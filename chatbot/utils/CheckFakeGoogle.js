@@ -19,7 +19,7 @@ function checkFake(texto) {
 		var alternativas = ""
 		if (response.data.items == undefined) {
 			alternativas = [{
-				message: "Clique aqui para obter mais detalhes:\n\nhttps://www.google.com/search?q=" + texto
+				message: "Clique aqui para obter mais detalhes:\n\nhttps://www.google.com/search?q=" + encodeURIComponent(texto)
 			}]
 		} else {
 			alternativas = response.data.items.map((item) => {
